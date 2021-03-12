@@ -1,11 +1,12 @@
 import mysql.connector
 db=mysql.connector.connect(host='localhost',
                            user='root',
-                           passwd='umar123',
+                           passwd='**Your Password**',
                            database='cyber_cafe')
 cursor=db.cursor()
 
 
+# Checking E-mail Validity 
 
 def check_email(email_address, characters, min_length=6):
     while True:
@@ -23,6 +24,8 @@ def check_email(email_address, characters, min_length=6):
             continue
         return email_address
 
+# Checking Mobile Number Validity
+
 def check_mob(mob_number):
     num='12345'
     while ((len(mob_number))!=10) or ((mob_number[0]) in num):
@@ -30,6 +33,8 @@ def check_mob(mob_number):
         print()
         mob_number=input('Enter Mobile Number Again : ')
     return mob_number
+
+# Adding Customer to the Database
 
 def add_customer():
     name_cust=input('Enter Name of Customer : ')
@@ -48,7 +53,7 @@ def add_customer():
     db.commit()
     print("CUSTOMER RECORD ADDED SUCCESSFULLY!")
 
-
+# Searching For A Customer
 
 def customer_detail():
     name_search=input('Enter Name Of Customer You Want To Search : ')
@@ -66,6 +71,8 @@ def customer_detail():
         print()
         print('**NO RECORD FOUND!**')
 
+# Fetching All Customers Details
+
 def show_all():
     title_cust=('Id','Name','Mobile number','Email Address','Address','Duration(in hrs)','Computer number','Price','Date and Time')
     cursor.execute('SELECT * FROM customer_details')
@@ -75,6 +82,8 @@ def show_all():
             print(title_cust[j],  ':-:'  ,i[j])
         print()
         print('**********************************')
+
+# Deleting a Customer Record
 
 def delete_customer():
     name_delete=input("Enter Name of Customer to delete his record : ")
@@ -92,6 +101,8 @@ def delete_customer():
         print("CUSTOMER RECORD DELETED SUCCESSFULLY!")
     else:
         print('**NO RECORD FOUND WITH THIS NUMBER!**')
+
+# Editing a Customer Record
 
 def edit_customer():
     mob_edit=input("Enter Mobile Number Of Customer You Want To Edit : ")
@@ -149,11 +160,11 @@ def edit_customer():
         print("**NO RECORD FOUND WITH THIS MOBILE NUMBER!**")
 
 
+# MANAGING COMPUTERS
 
 
 
-
-
+# Adding Computer in the Database
 
 def add_computer():
     name_comp=input("Enter the Name of Computer : ")
@@ -166,6 +177,7 @@ def add_computer():
     db.commit()
     print("COMPUTER RECORD ADDED SUCCESSFULLY")
 
+# Searching For a Computer
 
 def computer_detail():
     com_sear=input("Enter Company of Computer you want to Search : ")
@@ -181,6 +193,7 @@ def computer_detail():
     except:
         print('**NO RECORD FOUND!**')
 
+# Fetching Details of All Computers
 
 def show_all_comp():
     cursor.execute('SELECT * FROM computer_details')
@@ -192,6 +205,7 @@ def show_all_comp():
         print()
         print("*******************************")
 
+# Deleting a Computer Record
 
 def delete_computer():
     name_comp_delete=input("Enter Name of Computer to delete its record : ")
@@ -209,6 +223,7 @@ def delete_computer():
     else:
         print('**NO RECORD FOUND!**')
 
+# Editing a Computer Record
 
 def edit_computer():
     name_comp_edit=input("Enter Name Of Computer You Want To Edit : ")
